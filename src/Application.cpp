@@ -10,6 +10,7 @@ Application app;
 
 
 Application::Application() {
+    
     mScreenResolution = sf::VideoMode::getDesktopMode();
     pWindow = new sf::RenderWindow(mScreenResolution, "Traffic Simulator", sf::Style::Default);
 
@@ -38,7 +39,7 @@ void Application::Run() {
 
 }
 
-void Application::Render(const sf::Drawable& object) {
+void Application::Render(const sf::Drawable& rObject) {
 
     this->pWindow->draw(object);
 
