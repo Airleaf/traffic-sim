@@ -1,5 +1,8 @@
 //
 // Created by Dogbone on 2/12/21.
+
+//The basic application class that will power the program
+
 //
 
 #ifndef TRAFFIC_APPLICATION_H
@@ -16,6 +19,7 @@ class Application {
         ~Application();
 
         void Run();
+        void Render(const sf::Drawable& object);
 
         const sf::VideoMode &getScreenResolution() const;
 

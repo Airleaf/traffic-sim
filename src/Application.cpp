@@ -5,7 +5,7 @@
 #include "Application.h"
 
 
-
+//Global app class instance
 Application app;
 
 
@@ -38,6 +38,13 @@ void Application::Run() {
 
 }
 
+void Application::Render(const sf::Drawable& object) {
+
+    this->pWindow->draw(object);
+
+}
+
+
 
 
 void Application::SfmlEvents() {
@@ -53,3 +60,4 @@ void Application::SfmlEvents() {
 const sf::VideoMode &Application::getScreenResolution() const {
     return mScreenResolution;
 }
+
