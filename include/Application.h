@@ -19,7 +19,7 @@ class Application {
         ~Application();
 
         void Run();
-        void Render(const sf::Drawable& object);
+        void Render(const sf::Drawable& rObject);
 
         const sf::VideoMode &getScreenResolution() const;
 
