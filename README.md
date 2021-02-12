@@ -5,6 +5,6 @@
     <img src="https://img.shields.io/github/contributors/airleaf/traffic-sim?label=Contributors&style=flat-square">
     <img src="https://img.shields.io/github/issues/airleaf/traffic-sim?label=Issues&style=flat-square">
 </p>
-<br>
+<hr>
 
 This is a traffic simulator written mostly in C++ using SFML. 
