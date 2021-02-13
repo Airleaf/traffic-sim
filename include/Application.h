@@ -23,13 +23,10 @@ class Application {
         ~Application();
 
         void Run();
-<<<<<<< HEAD
         void Render();
         void Update();
         void UpdateSfmlEvents();
-=======
         void Render(const sf::Drawable& rObject);
->>>>>>> origin/beta
 
 
 
