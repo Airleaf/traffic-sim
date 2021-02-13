@@ -3,6 +3,6 @@
 int main() {
 
     Application app;
-    app.Run();
+    app.RunTilemap();
     return 0;
 }
