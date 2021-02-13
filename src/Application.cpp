@@ -6,7 +6,6 @@
 
 
 Application::Application() {
-    
     mScreenResolution = sf::VideoMode::getDesktopMode();
     InitWindow();
 
@@ -34,11 +33,7 @@ void Application::Render() {
 
 }
 
-<<<<<<< HEAD
 void Application::Update() {
-=======
-void Application::Render(const sf::Drawable& rObject) {
->>>>>>> origin/beta
 
     this->UpdateSfmlEvents();
 
