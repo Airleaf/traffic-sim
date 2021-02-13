@@ -1,0 +1,11 @@
+
+# Build & out directories
+build/
+out/
+
+# IDEs
+.idea
+.vscode
+
+# Logs
+*.log
