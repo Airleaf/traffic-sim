@@ -10,6 +10,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/VideoMode.hpp>
 
+#include "include/log.h"
+
 /* This is the main window of the whole application, it has
  * been moved to a global scope variable so it can be accessed
  * anywhere. Just be aware that modifying this window should
@@ -19,5 +21,12 @@ static sf::RenderWindow win(sf::VideoMode(320, 180), "traffic-sim 0.1");
 
 int main()
 {
-    
+    // Iniitalize logger
+    Log::Handle *log = Log::init("main");
+
+    tlog(log, "something");
+
+    // Close logger
+    Log::close(log);
+    return 0;
 }

@@ -3,7 +3,7 @@
  *
  * bellrsie
  */
-#include "../include/t_log.h"
+#include "../include/C_tlog.h"
 
 #include <stdio.h>
 #include <stdlib.h>
