@@ -26,7 +26,7 @@ class Application {
         void Render();
         void Update();
         void UpdateSfmlEvents();
-
+        void Render(const sf::Drawable& rObject);
         void RunTilemap();
 
 
