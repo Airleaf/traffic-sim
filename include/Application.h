@@ -10,7 +10,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+
+
+
 class Application {
+
 
 
     public:
@@ -19,19 +23,21 @@ class Application {
         ~Application();
 
         void Run();
-        void Render(const sf::Drawable& object);
+        void Render();
+        void Update();
+        void UpdateSfmlEvents();
 
-        const sf::VideoMode &getScreenResolution() const;
+
 
 
 private:
 
-        void SfmlEvents();
-
+        void InitWindow();
         sf::RenderWindow *pWindow;
         sf::VideoMode mScreenResolution;
-
         sf::Event mUserCloseEvent;
+
+
 };
 
 

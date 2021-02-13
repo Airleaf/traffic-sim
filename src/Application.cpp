@@ -5,13 +5,9 @@
 #include "Application.h"
 
 
-//Global app class instance
-Application app;
-
-
 Application::Application() {
     mScreenResolution = sf::VideoMode::getDesktopMode();
-    pWindow = new sf::RenderWindow(mScreenResolution, "Traffic Simulator", sf::Style::Default);
+    InitWindow();
 
 }
 
@@ -21,43 +17,44 @@ Application::~Application() {
 
 }
 
-void Application::Run() {
+void Application::InitWindow() {
 
-    while(this->pWindow->isOpen()){
-
-        SfmlEvents();
-        this->pWindow->clear();
-
-
-
-
-        this->pWindow->display();
-
-    }
-
-
-}
-
-void Application::Render(const sf::Drawable& object) {
-
-    this->pWindow->draw(object);
+    pWindow = new sf::RenderWindow(mScreenResolution, "Traffic Simulator", sf::Style::Default);
 
 }
 
 
+void Application::Render() {
+
+    this->pWindow->clear();
 
 
-void Application::SfmlEvents() {
+    this->pWindow->display();
 
-    while (this->pWindow->pollEvent(mUserCloseEvent)){
+}
+
+void Application::Update() {
+
+    this->UpdateSfmlEvents();
+
+}
+
+void Application::UpdateSfmlEvents() {
+
+    while(this->pWindow->pollEvent(mUserCloseEvent)){
         if(mUserCloseEvent.type == sf::Event::Closed)this->pWindow->close();
     }
 
 
-
 }
 
-const sf::VideoMode &Application::getScreenResolution() const {
-    return mScreenResolution;
+void Application::Run() {
+
+    while(this->pWindow->isOpen()) {
+        this->Update();
+        this->Render();
+    }
 }
+
+
 
