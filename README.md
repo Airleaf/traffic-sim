@@ -8,3 +8,17 @@
 <hr>
 
 This is a traffic simulator written mostly in C++ using SFML. 
+
+## Compilation
+### Linux
+Building is done with cmake, all you need is `libsfml-dev` installed on your system, and then run these commands:
+```
+mkdir build
+cd build
+cmake ..
+make
+```
+These commands will generate a Makefile in the `build` folder, which you can then use from the root folder using:
+```
+make -C build/
+```
