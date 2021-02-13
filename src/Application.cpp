@@ -6,9 +6,10 @@
 
 
 Application::Application() {
-    
+
     mScreenResolution = sf::VideoMode::getDesktopMode();
     InitWindow();
+
 
 }
 
@@ -30,15 +31,12 @@ void Application::Render() {
     this->pWindow->clear();
 
 
+
     this->pWindow->display();
 
 }
 
-<<<<<<< HEAD
 void Application::Update() {
-=======
-void Application::Render(const sf::Drawable& rObject) {
->>>>>>> origin/beta
 
     this->UpdateSfmlEvents();
 
@@ -46,10 +44,13 @@ void Application::Render(const sf::Drawable& rObject) {
 
 void Application::UpdateSfmlEvents() {
 
-    while(this->pWindow->pollEvent(mUserCloseEvent)){
-        if(mUserCloseEvent.type == sf::Event::Closed)this->pWindow->close();
-    }
+    while(this->pWindow->pollEvent(mUserCloseEvent)) {
+        if (mUserCloseEvent.type == sf::Event::Closed) {
 
+            this->pWindow->close();
+            exit(0);
+        }
+    }
 
 }
 
@@ -59,6 +60,23 @@ void Application::Run() {
         this->Update();
         this->Render();
     }
+}
+
+void Application::RunTilemap() {
+
+    mTilemap.LoadMap();
+
+    while(!sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+
+        mTilemap.MoveCurrentRect(*pWindow);
+        mTilemap.DrawAll(*pWindow);
+
+    }
+
+    mTilemap.SaveMap();
+
+    Run();
+
 }
 
 

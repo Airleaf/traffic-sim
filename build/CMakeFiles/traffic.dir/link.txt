@@ -1,0 +1,1 @@
+/bin/clang++-10   -std=c++17 -g   CMakeFiles/traffic.dir/src/Application.cpp.o CMakeFiles/traffic.dir/src/main.cpp.o  -o traffic  -Wl,-rpath,/usr/local/lib /usr/local/lib/libsfml-graphics-d.so.2.5.1 /usr/local/lib/libsfml-audio-d.so.2.5.1 /usr/local/lib/libsfml-network-d.so.2.5.1 /usr/local/lib/libsfml-window-d.so.2.5.1 /usr/local/lib/libsfml-system-d.so.2.5.1 

@@ -9,7 +9,7 @@
 #define TRAFFIC_APPLICATION_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
+#include "Tilemap.h"
 
 
 
@@ -23,14 +23,11 @@ class Application {
         ~Application();
 
         void Run();
-<<<<<<< HEAD
         void Render();
         void Update();
         void UpdateSfmlEvents();
-=======
-        void Render(const sf::Drawable& rObject);
->>>>>>> origin/beta
 
+        void RunTilemap();
 
 
 
@@ -41,6 +38,7 @@ private:
         sf::VideoMode mScreenResolution;
         sf::Event mUserCloseEvent;
 
+        Tilemap mTilemap;
 
 };
 
