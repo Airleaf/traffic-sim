@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/traffic.dir/src/Application.cpp.o"
+  "CMakeFiles/traffic.dir/src/Tilemap.cpp.o"
   "CMakeFiles/traffic.dir/src/main.cpp.o"
   "traffic"
   "traffic.pdb"

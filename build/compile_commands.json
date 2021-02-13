@@ -6,6 +6,11 @@
 },
 {
   "directory": "/home/caleb/CLionProjects/traffic/build",
+  "command": "/bin/clang++-10   -I/home/caleb/CLionProjects/traffic/./include   -std=c++17 -g   -o CMakeFiles/traffic.dir/src/Tilemap.cpp.o -c /home/caleb/CLionProjects/traffic/src/Tilemap.cpp",
+  "file": "/home/caleb/CLionProjects/traffic/src/Tilemap.cpp"
+},
+{
+  "directory": "/home/caleb/CLionProjects/traffic/build",
   "command": "/bin/clang++-10   -I/home/caleb/CLionProjects/traffic/./include   -std=c++17 -g   -o CMakeFiles/traffic.dir/src/main.cpp.o -c /home/caleb/CLionProjects/traffic/src/main.cpp",
   "file": "/home/caleb/CLionProjects/traffic/src/main.cpp"
 }
