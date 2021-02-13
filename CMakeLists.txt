@@ -3,7 +3,7 @@ project(traffic)
 
 set(CMAKE_CXX_FLAGS " -std=c++17")
 
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/*.c")
 
 add_executable(traffic ${SOURCES})
 
