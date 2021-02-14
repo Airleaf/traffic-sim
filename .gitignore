@@ -2,6 +2,8 @@
 # Build & out directories
 build/
 out/
+other/Tilemap.rmp
+
 
 # IDEs
 .idea

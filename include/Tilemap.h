@@ -42,13 +42,25 @@ class Tilemap {
 
     sf::Event mMouseEvent;
     void SwitchRectType(int type);
-    void PushRectToVector(sf::RectangleShape rect);
+    void PushRectToVector(const sf::RectangleShape &rect);
+    void ManageEvents(sf::RenderWindow& rEventHandler);
     void Undo();
     void Clear();
     sf::RectangleShape mCurrentRectangle;
     sf::Color mRoadColor;
+    sf::Texture* mpRoadTexture;
     int mType;
     bool mIs_assigned_color;
+
+    sf::Texture XRoad;
+    sf::Texture YRoad;
+    sf::Texture ULRoad;
+    sf::Texture URRoad;
+    sf::Texture DLRoad;
+    sf::Texture DRRoad;
+
+
+
 
     enum types{
         STRAIGHT_X = 1,
