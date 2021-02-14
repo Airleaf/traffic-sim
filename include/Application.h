@@ -10,14 +10,12 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Tilemap.h"
-
+#include "Log.h"
 
 
 class Application {
 
-
-
-    public:
+public:
 
         Application();
         ~Application();
@@ -27,7 +25,7 @@ class Application {
         void Update();
         void UpdateSfmlEvents();
         void RunTilemap();
-
+        void Exit();
 
 
 private:
@@ -39,6 +37,7 @@ private:
 
         Tilemap mTilemap;
 
+        static Log::Handle *log;
 };
 
 
