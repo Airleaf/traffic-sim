@@ -33,7 +33,7 @@ All functions and methods should have atleast 1 sentence describing what is does
  * return. 
  * @param stuff - random string
  */
-void func(std::string& stuff);
+void func(std::string &stuff);
 ```
 
 ### Pointers
