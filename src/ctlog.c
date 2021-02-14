@@ -4,7 +4,6 @@
  * bellrsie
  */
 #include "../include/ctlog.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -86,8 +85,15 @@ void t_log_push(TLogHandle *lh, TLog_Type type, const char *file,
     vsnprintf(cst, 233, fmt, _args);
 
     char* msg = (char*) calloc(sizeof(char), 255);
+
+    #ifndef T_LOG_DEBUG
     snprintf(msg, 255, "%02d:%02d:%02d %c [ %7s ] %s", t.tm_hour, t.tm_min, 
         t.tm_sec, t_log_get_type(type), lh->prefix, cst);
+    #else
+    // Replace the time with starts for testing if T_LOG_DEBUG is defined
+    snprintf(msg, 255, "**:**:** %c [ %7s ] %s", t_log_get_type(type), 
+        lh->prefix, cst);
+    #endif
 
     if (lh->wf == 1)
     {
@@ -96,7 +102,12 @@ void t_log_push(TLogHandle *lh, TLog_Type type, const char *file,
     }
     
     // Print
+    #ifndef T_LOG_DEBUG
     t_log_printclr(type, msg);
+    #else
+    // Print raw without colour if T_LOG_DEBUG is defined
+    printf("%s\n", msg);
+    #endif
 
     va_end(_args);
 
