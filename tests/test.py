@@ -1,4 +1,13 @@
 #!/usr/bin/python3
+#
+# This script is used for custom compilation scripts with selected
+# modules in order to achieve a selected enviroment for the running
+# code. This is done using the test.json file located in every test.
+#
+# The first argument is the name of the test enviroment, being the 
+# folder name where test.json is located.
+#
+
 import argparse
 import json
 import os
@@ -47,10 +56,11 @@ def main():
         object_files.append(f'__out__/{src}.o')
 
     # Link
-    sh(f'g++ -o __out__/{args.test} {args.test}/{cfg["main"]} {" ".join(object_files)}')
+    sh(f'g++ -o {args.test}/{args.test} {args.test}/{cfg["main"]} {" ".join(object_files)}')
 
     # Execute
-    sh(f'__out__/{args.test} > __out__/__stdout__')
+    os.chdir(f'./{args.test}')
+    sh(f'./{args.test}')
 
 
 if __name__ == "__main__":
