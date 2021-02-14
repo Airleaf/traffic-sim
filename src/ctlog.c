@@ -135,7 +135,6 @@ static char t_log_get_type(TLog_Type type)
         case TLog_Info:  return 'I';
         case TLog_Error: return 'E';
         case TLog_Warn:  return 'W';
-        case TLog_Ok:    return 'K';
     }
 }
 
@@ -148,7 +147,6 @@ static void t_log_printclr(TLog_Type type, char* msg)
         case TLog_Info:  printf("\033[0m");  break;
         case TLog_Error: printf("\033[91m"); break;
         case TLog_Warn:  printf("\033[93m"); break;
-        case TLog_Ok:    printf("\033[92m"); break;
     }
 
     printf("%s\033[0m\n", msg);

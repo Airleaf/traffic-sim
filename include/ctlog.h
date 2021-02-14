@@ -32,12 +32,18 @@
 #define terr(LH, ...) t_log_push(LH, TLog_Error, __FILE__, __LINE__, \
         __VA_ARGS__)
 
+/* terr macro, which is the same as the normal tlog but sets
+ * the message type to error.
+ */
+#define twarn(LH, ...) t_log_push(LH, TLog_Warn, __FILE__, __LINE__, \
+        __VA_ARGS__)
+
+
 typedef enum
 {
     TLog_Info,      // white
     TLog_Error,     // red
     TLog_Warn,      // yellow
-    TLog_Ok         // green
 
 } TLog_Type;
 
