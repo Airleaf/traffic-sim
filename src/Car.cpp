@@ -5,7 +5,7 @@
  */
 #include "../include/Car.h"
 
-Log::Handle *Car::log = Log::init("car-ai");
+Log::Handle *Car::log = Log::init("car-ai", "car-ai.log");
 
 /* Car constructor, takes the ID which should be unique for this 
  * particular car and shouldn't be found anywhere else.
