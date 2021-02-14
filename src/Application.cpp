@@ -25,9 +25,10 @@ void Application::InitWindow()
 }
 
 
-void Application::Render() 
-{
-    this->pWindow->clear();
+void Application::Render() {
+
+    this->pWindow->clear(sf::Color::Green);
+
     this->pWindow->display();
 }
 
