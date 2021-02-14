@@ -1,0 +1,10 @@
+{
+    "version": 1,
+    "main": "log_test.cpp",
+    "cpp-sources": [
+        "Log.cpp"
+    ],
+    "c-sources": [
+        "ctlog.c"
+    ]
+}
