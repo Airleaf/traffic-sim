@@ -19,12 +19,12 @@ TLogHandle *t_log_init(const char prefix[], const char* filename)
 {
     TLogHandle *lh = (TLogHandle*) malloc(sizeof(TLogHandle));
 
-    if (strlen(prefix) > 5)
+    if (strlen(prefix) > 7)
     {
-        printf("Log prefix is too long. (max 5 chars)\n");
+        printf("Log prefix is too long. (max 7 chars)\n");
         exit(1);
     }
-    strncpy(lh->prefix, prefix, 5);
+    strncpy(lh->prefix, prefix, 7);
 
     lh->mbuf = (char**) malloc(sizeof(char*) * T_LOG_BUFSIZE);
     for (int i = 0; i < T_LOG_BUFSIZE; i++) 
@@ -82,11 +82,11 @@ void t_log_push(TLogHandle *lh, const char *file, long line,
     struct tm t = *localtime(&time_);
     
     // Collect to buffer
-    char* cst = (char*) calloc(sizeof(char), 235);
-    vsnprintf(cst, 235, fmt, _args);
+    char* cst = (char*) calloc(sizeof(char), 233);
+    vsnprintf(cst, 233, fmt, _args);
 
     char* msg = (char*) calloc(sizeof(char), 255);
-    snprintf(msg, 255, "%02d:%02d:%02d [ %5s ] %s", t.tm_hour, t.tm_min, 
+    snprintf(msg, 255, "%02d:%02d:%02d [ %7s ] %s", t.tm_hour, t.tm_min, 
         t.tm_sec, lh->prefix, cst);
 
     if (lh->wf == 1)
