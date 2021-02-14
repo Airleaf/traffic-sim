@@ -11,3 +11,6 @@ other/Tilemap.rmp
 
 # Logs
 *.log
+
+# Save files
+*.rmp

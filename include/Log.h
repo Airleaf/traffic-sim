@@ -8,7 +8,7 @@
 #include <string>
 
 extern "C" {
-#include "C_tlog.h"
+#include "ctlog.h"
 }
 
 namespace Log
