@@ -48,64 +48,67 @@ void Tilemap::SwitchRectType(int type)
 
 
 
-void Tilemap::MoveCurrentRect(sf::RenderWindow& rEventHandler)
-{
+void Tilemap::MoveCurrentRect(sf::RenderWindow& rEventHandler) {
 
 
-    for(unsigned int y = 0.f; y < SCREEN_RESOLUTION.height; y += SCREEN_RESOLUTION.height/36)
-    {
+    for (unsigned int y = 0.f; y < SCREEN_RESOLUTION.height; y += SCREEN_RESOLUTION.height / 36) {
 
-        if(sf::Mouse::getPosition().y - 65 > y)
-        {
+        if (sf::Mouse::getPosition().y - 65 > y) {
             mCurrentRectangle.setPosition(mCurrentRectangle.getPosition().x, y);
 
         }
 
     }
 
-    for(unsigned int x = 0.f; x < SCREEN_RESOLUTION.width; x += SCREEN_RESOLUTION.height/36)
-    {
+    for (unsigned int x = 0.f; x < SCREEN_RESOLUTION.width; x += SCREEN_RESOLUTION.height / 36) {
 
-        if(sf::Mouse::getPosition().x > x)
-        {
+        if (sf::Mouse::getPosition().x > x) {
             mCurrentRectangle.setPosition(x, mCurrentRectangle.getPosition().y);
         }
 
     }
 
-    while(rEventHandler.pollEvent(mMouseEvent))
-    {
+    while (rEventHandler.pollEvent(mMouseEvent)) {
 
-        if(mMouseEvent.type == sf::Event::MouseButtonPressed && mMouseEvent.mouseButton.button == sf::Mouse::Left)
-        {
-            PushRectToVector(mCurrentRectangle);
+        switch (mMouseEvent.type) {
+
+            case sf::Event::KeyPressed:
+
+                if (mMouseEvent.key.code == sf::Keyboard::C)
+                    Clear();
+                break;
+
+            case sf::Event::Closed:
+                exit(0);
+                break;
+
+            case sf::Event::MouseButtonPressed:
+                if (mMouseEvent.mouseButton.button == sf::Mouse::Left) {
+                    PushRectToVector(mCurrentRectangle);
+                }
+
+                if (mMouseEvent.mouseButton.button == sf::Mouse::Right) {
+                    Undo();
+                }
+                break;
+
+            case sf::Event::TextEntered:
+
+                mType = (int) static_cast<char>(mMouseEvent.text.unicode) - 48;
+                SwitchRectType(mType);
+                sf::Color newColor = mRoadColor;
+                newColor.a = 150;
+                mCurrentRectangle.setFillColor(newColor);
+                mIs_assigned_color = true;
+                break;
+
+
+
+
         }
-
-        else if(mMouseEvent.type == sf::Event::MouseButtonPressed && mMouseEvent.mouseButton.button == sf::Mouse::Right)
-        {
-            Undo();
-        }
-
-        else if(mMouseEvent.type == sf::Event::TextEntered)
-        {
-            mType = (int)static_cast<char>(mMouseEvent.text.unicode) - 48;
-            SwitchRectType(mType);
-            sf::Color newColor = mRoadColor;
-            newColor.a = 150;
-            mCurrentRectangle.setFillColor(newColor);
-            mIs_assigned_color = true;
-        }
-
-        else if(mMouseEvent.type == sf::Event::KeyPressed && mMouseEvent.key.code == sf::Keyboard::C)
-        {
-            Clear();
-        }
-
-        else if(mMouseEvent.type == sf::Event::Closed)exit(0);
     }
-
-
 }
+
 
 void Tilemap::DrawAll(sf::RenderWindow &rWindow)
 {
