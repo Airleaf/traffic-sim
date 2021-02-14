@@ -1,6 +1,8 @@
 {
     "version": 1,
     "main": "log_test.cpp",
+    "executable": "logt",
+    
     "cpp-sources": [
         "Log.cpp"
     ],

@@ -55,12 +55,24 @@ def main():
         sh(f'gcc -c -o __out__/{src}.o ../src/{src}')
         object_files.append(f'__out__/{src}.o')
 
+    # Find links
+    libs = []
+    if 'libs' in cfg:
+        libs = ['-l' + s for s in cfg['libs']]
+
+    # Choose executable
+    exe = args.test
+    if 'executable' in cfg:
+        exe = cfg['executable']
+    
     # Link
-    sh(f'g++ -o {args.test}/{args.test} {args.test}/{cfg["main"]} {" ".join(object_files)}')
+    objf = ' '.join(object_files)
+    libs = ' '.join(libs)
+    sh(f'g++ -o {args.test}/{exe} {args.test}/{cfg["main"]} {objf} {libs}')
 
     # Execute
     os.chdir(f'./{args.test}')
-    sh(f'./{args.test}')
+    sh(f'./{exe}')
 
 
 if __name__ == "__main__":
