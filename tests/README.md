@@ -10,6 +10,7 @@ with a `test.json` configuration file.
 - **Before running a test**, be sure to run `setup.sh` *(this will be automated in the future)*, to create the required
   directories.
 - Create a directory with the topic you're testing, like `car` or `lang`.
+- Create a `.cpp` file with your main function called `main.cpp` and place it in the test directory.
 - Create a `test.json` inside the test directory, here is a simple example:
 
 ```json
