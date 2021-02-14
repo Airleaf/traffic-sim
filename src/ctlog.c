@@ -136,6 +136,7 @@ static char t_log_get_type(TLog_Type type)
         case TLog_Error: return 'E';
         case TLog_Warn:  return 'W';
     }
+    return '-';
 }
 
 /* Print the message to stdout using the specified colour
