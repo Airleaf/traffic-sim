@@ -19,7 +19,7 @@ static Log::Handle *g_log;
 int main() 
 {
     // Initialzation
-    g_log = Log::init("main", "traffic.log");
+    g_log = Log::init("mainest", "traffic.log");
 
     tlog(g_log, "Starting application...");
     Application app;
