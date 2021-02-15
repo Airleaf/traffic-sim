@@ -93,11 +93,8 @@ If you don't see the thing you want in here, that means you can name it anyway y
     <td><code>FooBar</code></td>
 </tr>
 <tr>
-
+<tr>
     <td>Class methods that returns a bool</td>
-
-    <td>Class methods that return a bool value</td>
-
     <td><code>IsFooBar</code></td>
 </tr>
 <tr>
