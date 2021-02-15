@@ -6,6 +6,9 @@ out/
 tests/__out__
 other/Tilemap.rmp
 
+# Binaries
+*.exe
+*.bin
 
 # IDEs
 .idea
