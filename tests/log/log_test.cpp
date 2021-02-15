@@ -9,5 +9,7 @@ int main()
     tlog(lh, "info fourteen = %d", 14);
     twarn(lh, "warn string = %s", "string");
     terr(lh, "error two point three = %f", 2.3f);
+ 
+    Log::close(lh);
     return 0;
 }
