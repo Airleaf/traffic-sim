@@ -3,9 +3,10 @@
 //
 
 #include "../include/Tilemap.h"
+#include "../include/Application.h"
 
 // Initialize static log handle for tilemap class
-Log::Handle *Tilemap::log = Log::init("tilemap", "tilemap.log");
+Log::Handle *Tilemap::log = Log::init("tilemp", "tilemap.log");
 
 Tilemap::Tilemap()
 {
@@ -14,14 +15,12 @@ Tilemap::Tilemap()
 
     mCurrentRectangle.setSize(sf::Vector2f(120.f,120.f));
 
-
-    if(!XRoad.loadFromFile("./other/assets/road_X.png"))exit(1);
-    if(!YRoad.loadFromFile("./other/assets/road_Y.png"))exit(1);
-    if(!URRoad.loadFromFile("./other/assets/road_UR.png"))exit(1);
-    if(!ULRoad.loadFromFile("./other/assets/road_UL.png"))exit(1);
-    if(!DLRoad.loadFromFile("./other/assets/road_DL.png"))exit(1);
-    if(!DRRoad.loadFromFile("./other/assets/road_DR.png"))exit(1);
-
+    if(!XRoad.loadFromFile("../other/assets/road_X.png"))exit(1);
+    if(!YRoad.loadFromFile("../other/assets/road_Y.png"))exit(1);
+    if(!URRoad.loadFromFile("../other/assets/road_UR.png"))exit(1);
+    if(!ULRoad.loadFromFile("../other/assets/road_UL.png"))exit(1);
+    if(!DLRoad.loadFromFile("../other/assets/road_DL.png"))exit(1);
+    if(!DRRoad.loadFromFile("../other/assets/road_DR.png"))exit(1);
 
 }
 
@@ -120,7 +119,7 @@ void Tilemap::SaveMap()
 
     if(!tilemap.empty())
     {
-        std::ofstream output("./other/Tilemap.rmp");
+        std::ofstream output("../other/Tilemap.rmp");
         if(!output.is_open()){
             terr(this->log, "Failed to open map file!");
             exit(1);
@@ -137,7 +136,7 @@ void Tilemap::SaveMap()
 void Tilemap::LoadMap()
 {
 
-    std::ifstream input("./other/Tilemap.rmp");
+    std::ifstream input("../other/Tilemap.rmp");
     if(!input.is_open()){
         terr(this->log, "Failed to open map file!");
         exit(1);
@@ -178,7 +177,7 @@ void Tilemap::ManageEvents(sf::RenderWindow& rEventHandler) {
                 break;
 
             case sf::Event::Closed:
-                exit(0);
+                this->Exit();
                 break;
 
             case sf::Event::MouseButtonPressed:
@@ -210,5 +209,17 @@ void Tilemap::ManageEvents(sf::RenderWindow& rEventHandler) {
 
 }
 
+/* This function calls Exit on the main objects which in
+ * turn calls certain deconstructors, mainly the Log::close
+ * function to close the log handles and deallocate memory.
+ */
+void Tilemap::Exit()
+{
+    tlog(this->log, "Closing window");
+    Log::close(this->log);
+    
+    // Call static exits on objects here
+    Application::Exit();
 
-
+    exit(0);
+}

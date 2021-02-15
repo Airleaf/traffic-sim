@@ -73,11 +73,8 @@ void Application::RunTilemap()
 
 void Application::Exit()
 {
-    tlog(this->log, "Exiting window");
+    tlog(log, "Closing application");
     
     // Deconstruct objects
-    Log::close(this->log);
-
-    this->pWindow->close();
-    exit(0);
+    Log::close(log);
 }

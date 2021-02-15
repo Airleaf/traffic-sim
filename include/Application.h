@@ -25,7 +25,7 @@ public:
         void Update();
         void UpdateSfmlEvents();
         void RunTilemap();
-        void Exit();
+        static void Exit();
 
 
 private:

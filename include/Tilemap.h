@@ -46,6 +46,7 @@ private:
     void ManageEvents(sf::RenderWindow& rEventHandler);
     void Undo();
     void Clear();
+    void Exit();
     Tile mCurrentRectangle;
     sf::Texture* mpRoadTexture;
     int mType;
