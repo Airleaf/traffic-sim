@@ -19,13 +19,13 @@
 #include <fstream>
 #include <sstream>
 #include <SFML/Graphics.hpp>
+#include "./Tile.h"
 
 class Tilemap {
 
 
     public:
     const sf::VideoMode SCREEN_RESOLUTION = sf::VideoMode::getDesktopMode();
-
 
 
     Tilemap();
@@ -35,20 +35,30 @@ class Tilemap {
     void SaveMap();
     void LoadMap();
 
-    std::vector<sf::RectangleShape> tilemap;
-    std::vector<int> types;
+    std::vector<Tile> tilemap;
 
     private:
 
     sf::Event mMouseEvent;
     void SwitchRectType(int type);
-    void PushRectToVector(sf::RectangleShape rect);
+    void PushRectToVector(const Tile &rect);
+    void ManageEvents(sf::RenderWindow& rEventHandler);
     void Undo();
     void Clear();
-    sf::RectangleShape mCurrentRectangle;
-    sf::Color mRoadColor;
+    Tile mCurrentRectangle;
+    sf::Texture* mpRoadTexture;
     int mType;
     bool mIs_assigned_color;
+
+    sf::Texture XRoad;
+    sf::Texture YRoad;
+    sf::Texture ULRoad;
+    sf::Texture URRoad;
+    sf::Texture DLRoad;
+    sf::Texture DRRoad;
+
+
+
 
     enum types{
         STRAIGHT_X = 1,

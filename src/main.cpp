@@ -8,7 +8,7 @@
  * Airleaf, 2021
  */
 #include "../include/Application.h"
-#include "../include/log.h"
+#include "../include/Log.h"
 
 /* Global log handle instance, should only be used on the main
  * thread as it's not thread-safe yet. This is intialized in 

@@ -3,9 +3,16 @@
 build/
 out/
 
+tests/__out__
+other/Tilemap.rmp
+
+
 # IDEs
 .idea
 .vscode
 
 # Logs
 *.log
+
+# Save files
+*.rmp

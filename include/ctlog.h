@@ -23,8 +23,29 @@
  * function. This is turned into a macro in order to automatically
  * pass the __FILE__ and __LINE__ macros.
  */
-#define tlog(LH, ...) t_log_push(LH, __FILE__, __LINE__, \
+#define tlog(LH, ...) t_log_push(LH, TLog_Info, __FILE__, __LINE__, \
         __VA_ARGS__)
+
+/* terr macro, which is the same as the normal tlog but sets
+ * the message type to error.
+ */
+#define terr(LH, ...) t_log_push(LH, TLog_Error, __FILE__, __LINE__, \
+        __VA_ARGS__)
+
+/* terr macro, which is the same as the normal tlog but sets
+ * the message type to error.
+ */
+#define twarn(LH, ...) t_log_push(LH, TLog_Warn, __FILE__, __LINE__, \
+        __VA_ARGS__)
+
+
+typedef enum
+{
+    TLog_Info,      // white
+    TLog_Error,     // red
+    TLog_Warn,      // yellow
+
+} TLog_Type;
 
 /* The log handle structure. Stores the file pointer and buffer,
  * along with additional information about the file option, 
@@ -64,8 +85,8 @@ extern void t_log_close(TLogHandle* lh);
  * a macro inserting the __FILE__ and __LINE__ macros for
  * better logging.
  */
-extern void t_log_push(TLogHandle* lh, const char* file, long line,
-            const char* fmt, ...);
+extern void t_log_push(TLogHandle* lh, TLog_Type type, const char* file, 
+            long line, const char* fmt, ...);
 
 /* Check the state of the buffer of the log handle, flush 
  * all messages to the file if it reaches T_LOG_BUFSIZE.
@@ -76,5 +97,14 @@ static void t_log_check(TLogHandle* lh);
  * buffer checks are done in t_log_check, not here. 
  */
 static void t_log_flush(TLogHandle* lh);
+
+/* Get status type from the TLog_Type.
+ */
+static char t_log_get_type(TLog_Type type);
+
+/* Print the message to stdout using the specified colour
+ * passed as the tlog type.
+ */
+static void t_log_printclr(TLog_Type type, char* msg);
 
 #endif // T_LOG_H_

@@ -1,7 +1,7 @@
 /**
  * C++ wrapper implementation
  */
-#include "../include/log.h"
+#include "../include/Log.h"
 
 /* This is the initializer for a single log handle. Writes
  * the logs to the chosen file.
