@@ -79,7 +79,7 @@ void Tilemap::MoveCurrentRect(sf::RenderWindow& rEventHandler) {
 
 void Tilemap::DrawAll(sf::RenderWindow &rWindow)
 {
-    rWindow.clear(sf::Color::Green);
+    rWindow.clear(sf::Color(34,139,34));
     for(sf::RectangleShape& rRect : tilemap)rWindow.draw(rRect);
     rWindow.draw(mCurrentRectangle);
     rWindow.display();
