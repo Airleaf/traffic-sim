@@ -18,9 +18,9 @@ TLogHandle *t_log_init(const char prefix[], const char* filename)
 {
     TLogHandle *lh = (TLogHandle*) malloc(sizeof(TLogHandle));
 
-    if (strlen(prefix) > 7)
+    if (strlen(prefix) > 6)
     {
-        printf("Log prefix is too long. (max 7 chars)\n");
+        printf("Log prefix is too long. (max 6 chars)\n");
         exit(1);
     }
     strncpy(lh->prefix, prefix, 7);
@@ -87,11 +87,11 @@ void t_log_push(TLogHandle *lh, TLog_Type type, const char *file,
     char* msg = (char*) calloc(sizeof(char), 255);
 
     #ifndef T_LOG_DEBUG
-    snprintf(msg, 255, "%02d:%02d:%02d %c [ %7s ] %s", t.tm_hour, t.tm_min, 
+    snprintf(msg, 255, "%02d:%02d:%02d %c [ %6s ] %s", t.tm_hour, t.tm_min, 
         t.tm_sec, t_log_get_type(type), lh->prefix, cst);
     #else
     // Replace the time with starts for testing if T_LOG_DEBUG is defined
-    snprintf(msg, 255, "**:**:** %c [ %7s ] %s", t_log_get_type(type), 
+    snprintf(msg, 255, "**:**:** %c [ %6s ] %s", t_log_get_type(type), 
         lh->prefix, cst);
     #endif
 

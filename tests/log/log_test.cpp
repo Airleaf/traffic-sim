@@ -10,6 +10,11 @@ int main()
     twarn(lh, "warn string = %s", "string");
     terr(lh, "error two point three = %f", 2.3f);
  
+    tlog(lh, "sizeof(char**) = %ld", sizeof(char**));
+    tlog(lh, "sizeof(TLogHandle) = %ld", sizeof(TLogHandle));
+    tlog(lh, "sizeof(uint) = %ld", sizeof(uint));
+    tlog(lh, "sizeof(FILE*) = %ld", sizeof(FILE*));
+
     Log::close(lh);
     return 0;
 }
