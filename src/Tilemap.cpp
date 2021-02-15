@@ -10,7 +10,7 @@ Tilemap::Tilemap()
     mIs_assigned_color = false;
 
     mCurrentRectangle.setSize(sf::Vector2f(120.f,120.f));
-   //mCurrentRectangle.setFillColor(sf::Color(112, 163, 204, 255));
+
 
     if(!XRoad.loadFromFile("./other/assets/road_X.png"))exit(1);
     if(!YRoad.loadFromFile("./other/assets/road_Y.png"))exit(1);
@@ -197,7 +197,7 @@ void Tilemap::ManageEvents(sf::RenderWindow& rEventHandler) {
                 mIs_assigned_color = true;
                 break;
 
-            case sf::Event::Resized:
+            //case sf::Event::Resized:
 
 
 
