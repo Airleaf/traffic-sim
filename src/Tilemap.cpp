@@ -9,7 +9,7 @@ Tilemap::Tilemap()
 
     mIs_assigned_color = false;
 
-    mCurrentRectangle.setSize(sf::Vector2f(30.f,30.f));
+    mCurrentRectangle.setSize(sf::Vector2f(120.f,120.f));
    //mCurrentRectangle.setFillColor(sf::Color(112, 163, 204, 255));
 
     if(!XRoad.loadFromFile("./other/assets/road_X.png"))exit(1);
@@ -56,7 +56,7 @@ void Tilemap::SwitchRectType(int type)
 void Tilemap::MoveCurrentRect(sf::RenderWindow& rEventHandler) {
 
 
-    for (unsigned int y = 0.f; y < SCREEN_RESOLUTION.height; y += SCREEN_RESOLUTION.height / 36) {
+    for (unsigned int y = 0.f; y < SCREEN_RESOLUTION.height; y += SCREEN_RESOLUTION.height / 9) {
 
         if (sf::Mouse::getPosition().y - 65 > y) {
             mCurrentRectangle.setPosition(mCurrentRectangle.getPosition().x, y);
@@ -64,7 +64,7 @@ void Tilemap::MoveCurrentRect(sf::RenderWindow& rEventHandler) {
 
     }
 
-    for (unsigned int x = 0.f; x < SCREEN_RESOLUTION.width; x += SCREEN_RESOLUTION.height / 36) {
+    for (unsigned int x = 0.f; x < SCREEN_RESOLUTION.width; x += SCREEN_RESOLUTION.height / 9) {
 
         if (sf::Mouse::getPosition().x > x) {
             mCurrentRectangle.setPosition(x, mCurrentRectangle.getPosition().y);
@@ -79,7 +79,7 @@ void Tilemap::MoveCurrentRect(sf::RenderWindow& rEventHandler) {
 
 void Tilemap::DrawAll(sf::RenderWindow &rWindow)
 {
-    rWindow.clear(sf::Color::Green);
+    rWindow.clear(sf::Color(34,139,34));
     for(sf::RectangleShape& rRect : tilemap)rWindow.draw(rRect);
     rWindow.draw(mCurrentRectangle);
     rWindow.display();
@@ -148,7 +148,7 @@ void Tilemap::LoadMap()
 
     while(input >> x >> y >> type)
     {
-        rect.setSize(sf::Vector2f(30,30));
+        rect.setSize(sf::Vector2f(120,120));
         rect.setPosition(x, y);
         SwitchRectType(type);
         rect.setTexture(mpRoadTexture);
