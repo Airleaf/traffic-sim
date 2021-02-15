@@ -38,6 +38,13 @@
 #define twarn(LH, ...) t_log_push(LH, TLog_Warn, __FILE__, __LINE__, \
         __VA_ARGS__)
 
+/* texcept macro, resposible for calling t_log_except which prints
+ * an exception message with the current file and line specified
+ * automatically. Works similarly to t_log_push.
+ */
+#define texcept(LH, ...) t_log_except(LH, __FILE__, __LINE__, \
+        __VA_ARGS__)
+
 
 typedef enum
 {
@@ -87,6 +94,14 @@ extern void t_log_close(TLogHandle* lh);
  */
 extern void t_log_push(TLogHandle* lh, TLog_Type type, const char* file, 
             long line, const char* fmt, ...);
+
+/* Print the given message to standard out without using the log
+ * handle buffers. Prints the file and line number where the exception
+ * happened, making debugging a lot easier. After that it calls 
+ * t_log_close on the handle and exits the program with 1.
+ */
+extern void t_log_except(TLogHandle* lh, const char* file, long line,
+            const char* fmt, ...);
 
 /* Check the state of the buffer of the log handle, flush 
  * all messages to the file if it reaches T_LOG_BUFSIZE.

@@ -15,6 +15,8 @@ int main()
     tlog(lh, "sizeof(uint) = %ld", sizeof(uint));
     tlog(lh, "sizeof(FILE*) = %ld", sizeof(FILE*));
 
+    texcept(lh, "Something went wrong");
+
     Log::close(lh);
     return 0;
 }

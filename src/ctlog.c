@@ -85,15 +85,8 @@ void t_log_push(TLogHandle *lh, TLog_Type type, const char *file,
     vsnprintf(cst, 233, fmt, _args);
 
     char* msg = (char*) calloc(sizeof(char), 255);
-
-    #ifndef T_LOG_DEBUG
     snprintf(msg, 255, "%02d:%02d:%02d %c [ %6s ] %s", t.tm_hour, t.tm_min, 
         t.tm_sec, t_log_get_type(type), lh->prefix, cst);
-    #else
-    // Replace the time with starts for testing if T_LOG_DEBUG is defined
-    snprintf(msg, 255, "**:**:** %c [ %6s ] %s", t_log_get_type(type), 
-        lh->prefix, cst);
-    #endif
 
     if (lh->wf == 1)
     {
@@ -101,17 +94,38 @@ void t_log_push(TLogHandle *lh, TLog_Type type, const char *file,
         lh->bsize++;
     }
     
-    // Print
-    #ifndef T_LOG_DEBUG
     t_log_printclr(type, msg);
-    #else
-    // Print raw without colour if T_LOG_DEBUG is defined
-    printf("%s\n", msg);
-    #endif
+    t_log_check(lh);
 
     va_end(_args);
+}
 
-    t_log_check(lh);
+/* Print the given message to standard out without using the log
+ * handle buffers. Prints the file and line number where the exception
+ * happened, making debugging a lot easier. After that it calls 
+ * t_log_close on the handle and exits the program with 1.
+ */
+void t_log_except(TLogHandle* lh, const char* file, long line,
+     const char* fmt, ...)
+{
+    va_list _args;
+    va_start(_args, fmt);
+
+    char with_file[4] = "no\0\0";
+    if (lh->wf)
+        strncpy(with_file, "yes\0", 4);
+
+    // Formatting
+    printf("\033[31m\nAn exception occured in '%s' on line %ld:\n", 
+           file, line);
+    printf("   logdump of: [ %6s ] wf: %s | buf: %d | tlock: %d\n\n ~ ", 
+           lh->prefix, with_file, lh->bsize, lh->tlock);
+    
+    vprintf(fmt, _args);
+
+    printf("\033[0m\n\n");
+    t_log_close(lh);
+    va_end(_args);
 }
 
 /* Check the state of the buffer of the log handle, flush 
@@ -157,7 +171,7 @@ static void t_log_printclr(TLog_Type type, char* msg)
 {
     switch (type) {
         case TLog_Info:  printf("\033[0m");  break;
-        case TLog_Error: printf("\033[91m"); break;
+        case TLog_Error: printf("\033[31m"); break;
         case TLog_Warn:  printf("\033[93m"); break;
     }
 
