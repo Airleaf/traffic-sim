@@ -121,8 +121,7 @@ void Tilemap::SaveMap()
     {
         std::ofstream output("../other/Tilemap.rmp");
         if(!output.is_open()){
-            terr(this->log, "Failed to open map file!");
-            exit(1);
+            texcept(this->log, "Failed to open map file!");
         }
         for (Tile i : tilemap) {
             output << i.getPosition().x << ' ' << i.getPosition().y << ' ' << i.getType() << std::endl;
@@ -138,8 +137,7 @@ void Tilemap::LoadMap()
 
     std::ifstream input("../other/Tilemap.rmp");
     if(!input.is_open()){
-        terr(this->log, "Failed to open map file!");
-        exit(1);
+        texcept(this->log, "Failed to open map file!");
     }
     std::string line;
     float x, y;
