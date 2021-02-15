@@ -59,11 +59,11 @@ typedef enum
 typedef struct 
 {
     char prefix[7]; // 7 letter prefix
+    char wf;        // with file option
     char** mbuf;    // message buffer
     FILE* fp;       // file pointer
-    uint tlock;     // thread lock                   
+    uint tlock;     // thread lock     
     uint bsize;     // buffer size
-    char wf;        // with file option
 
 } TLogHandle;
 
