@@ -44,6 +44,7 @@ void Application::UpdateSfmlEvents()
         if (mUserCloseEvent.type == sf::Event::Closed) 
         {
             this->Exit();
+            this->pWindow->close();
         }
     }
 }
