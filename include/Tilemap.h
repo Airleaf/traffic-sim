@@ -20,11 +20,12 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "./Tile.h"
+#include "Log.h"
 
-class Tilemap {
+class Tilemap 
+{
 
-
-    public:
+public:
     const sf::VideoMode SCREEN_RESOLUTION = sf::VideoMode::getDesktopMode();
 
 
@@ -37,7 +38,7 @@ class Tilemap {
 
     std::vector<Tile> tilemap;
 
-    private:
+private:
 
     sf::Event mMouseEvent;
     void SwitchRectType(int type);
@@ -57,10 +58,8 @@ class Tilemap {
     sf::Texture DLRoad;
     sf::Texture DRRoad;
 
-
-
-
-    enum types{
+    enum types
+    {
         STRAIGHT_X = 1,
         STRAIGHT_Y,
         FIRST_CORNER,
@@ -69,8 +68,7 @@ class Tilemap {
         FOURTH_CORNER
     };
 
-
-
+    static Log::Handle *log;
 
 };
 
