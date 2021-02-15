@@ -58,7 +58,7 @@ typedef enum
  */
 typedef struct 
 {
-    char prefix[7]; // 5 letter prefix
+    char prefix[7]; // 7 letter prefix
     char** mbuf;    // message buffer
     FILE* fp;       // file pointer
     uint tlock;     // thread lock                   
