@@ -9,7 +9,7 @@ Tilemap::Tilemap()
 
     mIs_assigned_color = false;
 
-    mCurrentRectangle.setSize(sf::Vector2f(30.f,30.f));
+    mCurrentRectangle.setSize(sf::Vector2f(120.f,120.f));
    //mCurrentRectangle.setFillColor(sf::Color(112, 163, 204, 255));
 
     if(!XRoad.loadFromFile("./other/assets/road_X.png"))exit(1);
@@ -56,7 +56,7 @@ void Tilemap::SwitchRectType(int type)
 void Tilemap::MoveCurrentRect(sf::RenderWindow& rEventHandler) {
 
 
-    for (unsigned int y = 0.f; y < SCREEN_RESOLUTION.height; y += SCREEN_RESOLUTION.height / 36) {
+    for (unsigned int y = 0.f; y < SCREEN_RESOLUTION.height; y += SCREEN_RESOLUTION.height / 9) {
 
         if (sf::Mouse::getPosition().y - 65 > y) {
             mCurrentRectangle.setPosition(mCurrentRectangle.getPosition().x, y);
@@ -64,7 +64,7 @@ void Tilemap::MoveCurrentRect(sf::RenderWindow& rEventHandler) {
 
     }
 
-    for (unsigned int x = 0.f; x < SCREEN_RESOLUTION.width; x += SCREEN_RESOLUTION.height / 36) {
+    for (unsigned int x = 0.f; x < SCREEN_RESOLUTION.width; x += SCREEN_RESOLUTION.height / 9) {
 
         if (sf::Mouse::getPosition().x > x) {
             mCurrentRectangle.setPosition(x, mCurrentRectangle.getPosition().y);
@@ -85,13 +85,12 @@ void Tilemap::DrawAll(sf::RenderWindow &rWindow)
     rWindow.display();
 }
 
-void Tilemap::PushRectToVector(const sf::RectangleShape &rect)
+void Tilemap::PushRectToVector(const Tile &rect)
 {
 
     if(mIs_assigned_color)
     {
         tilemap.push_back(rect);
-        types.push_back(mType);
     }
 
 }
@@ -102,7 +101,6 @@ void Tilemap::Undo()
     if(!tilemap.empty())
     {
         tilemap.pop_back();
-        types.pop_back();
     }
 
 }
@@ -110,7 +108,7 @@ void Tilemap::Undo()
 void Tilemap::Clear()
 {
     tilemap.clear();
-    types.clear();
+
 }
 
 
@@ -124,8 +122,8 @@ void Tilemap::SaveMap()
             std::cout<<"Failed to open map file!";
             exit(1);
         }
-        for (int i = 0; i < tilemap.size(); i++) {
-            output << tilemap[i].getPosition().x << ' ' << tilemap[i].getPosition().y << ' ' << types[i] << std::endl;
+        for (Tile i : tilemap) {
+            output << i.getPosition().x << ' ' << i.getPosition().y << ' ' << i.getType() << std::endl;
 
         }
     }
@@ -144,21 +142,22 @@ void Tilemap::LoadMap()
     std::string line;
     float x, y;
     int type;
-    sf::RectangleShape rect;
+    Tile rect;
 
     while(input >> x >> y >> type)
     {
-        rect.setSize(sf::Vector2f(30,30));
+        rect.setSize(sf::Vector2f(120,120));
         rect.setPosition(x, y);
         SwitchRectType(type);
         rect.setTexture(mpRoadTexture);
+        rect.setType(type);
         tilemap.push_back(rect);
-        types.push_back(type);
+
     }
 
-    for(sf::RectangleShape i: tilemap)
+    for(Tile i: tilemap)
     {
-        std::cout<<i.getPosition().x << "  " << i.getPosition().y << std::endl;
+        std::cout<<i.getPosition().x << "  " << i.getPosition().y << "  "<<i.getType() << std::endl;
     }
     input.close();
 }
@@ -193,11 +192,16 @@ void Tilemap::ManageEvents(sf::RenderWindow& rEventHandler) {
 
                 mType = (int) static_cast<char>(mMouseEvent.text.unicode) - 48;
                 SwitchRectType(mType);
+                mCurrentRectangle.setType(mType);
                 mCurrentRectangle.setTexture(mpRoadTexture);
                 mIs_assigned_color = true;
                 break;
 
+            case sf::Event::Resized:
 
+
+
+            default:break;
         }
     }
 
