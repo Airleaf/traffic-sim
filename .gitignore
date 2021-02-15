@@ -2,6 +2,8 @@
 # Build & out directories
 build/
 out/
+
+tests/__out__
 other/Tilemap.rmp
 
 
