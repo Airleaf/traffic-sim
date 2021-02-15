@@ -12,12 +12,12 @@ Tilemap::Tilemap()
     mCurrentRectangle.setSize(sf::Vector2f(120.f,120.f));
 
 
-    if(!XRoad.loadFromFile("./other/assets/road_X.png"))exit(1);
-    if(!YRoad.loadFromFile("./other/assets/road_Y.png"))exit(1);
-    if(!URRoad.loadFromFile("./other/assets/road_UR.png"))exit(1);
-    if(!ULRoad.loadFromFile("./other/assets/road_UL.png"))exit(1);
-    if(!DLRoad.loadFromFile("./other/assets/road_DL.png"))exit(1);
-    if(!DRRoad.loadFromFile("./other/assets/road_DR.png"))exit(1);
+    if(!XRoad.loadFromFile("../other/assets/road_X.png"))exit(1);
+    if(!YRoad.loadFromFile("../other/assets/road_Y.png"))exit(1);
+    if(!URRoad.loadFromFile("../other/assets/road_UR.png"))exit(1);
+    if(!ULRoad.loadFromFile("../other/assets/road_UL.png"))exit(1);
+    if(!DLRoad.loadFromFile("../other/assets/road_DL.png"))exit(1);
+    if(!DRRoad.loadFromFile("../other/assets/road_DR.png"))exit(1);
 
 
 }
@@ -117,7 +117,7 @@ void Tilemap::SaveMap()
 
     if(!tilemap.empty())
     {
-        std::ofstream output("./other/Tilemap.rmp");
+        std::ofstream output("../other/Tilemap.rmp");
         if(!output.is_open()){
             std::cout<<"Failed to open map file!";
             exit(1);
@@ -134,7 +134,7 @@ void Tilemap::SaveMap()
 void Tilemap::LoadMap()
 {
 
-    std::ifstream input("./other/Tilemap.rmp");
+    std::ifstream input("../other/Tilemap.rmp");
     if(!input.is_open()){
         std::cout<<"Failed to open map file!";
         exit(1);
