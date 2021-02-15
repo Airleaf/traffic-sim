@@ -4,6 +4,9 @@
 
 #include "../include/Tilemap.h"
 
+// Initialize static log handle for tilemap class
+Log::Handle *Tilemap::log = Log::init("tilemap", "tilemap.log");
+
 Tilemap::Tilemap()
 {
 
@@ -119,7 +122,7 @@ void Tilemap::SaveMap()
     {
         std::ofstream output("./other/Tilemap.rmp");
         if(!output.is_open()){
-            std::cout<<"Failed to open map file!";
+            terr(this->log, "Failed to open map file!");
             exit(1);
         }
         for (Tile i : tilemap) {
@@ -136,7 +139,7 @@ void Tilemap::LoadMap()
 
     std::ifstream input("./other/Tilemap.rmp");
     if(!input.is_open()){
-        std::cout<<"Failed to open map file!";
+        terr(this->log, "Failed to open map file!");
         exit(1);
     }
     std::string line;
@@ -157,7 +160,7 @@ void Tilemap::LoadMap()
 
     for(Tile i: tilemap)
     {
-        std::cout<<i.getPosition().x << "  " << i.getPosition().y << "  "<<i.getType() << std::endl;
+        tlog(this->log, "%d %d %d", i.getPosition().x, i.getPosition().y, i.getType());
     }
     input.close();
 }
