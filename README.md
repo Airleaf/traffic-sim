@@ -33,6 +33,7 @@ All functions and methods should have atleast 1 sentence describing what is does
  * return. 
  * @param stuff - random string
  */
+
 void func(std::string &stuff);
 ```
 
@@ -42,7 +43,10 @@ The stars and ampersands generally should be located closer to the variable name
 int *pointer;
 Foo::Bar *fbar;
 void foo(uint *nums);
+
 void bar(std::string &str);
+
+
 ```
 
 ### Naming
@@ -89,7 +93,11 @@ If you don't see the thing you want in here, that means you can name it anyway y
     <td><code>FooBar</code></td>
 </tr>
 <tr>
+
     <td>Class methods that returns a bool</td>
+
+    <td>Class methods that return a bool value</td>
+
     <td><code>IsFooBar</code></td>
 </tr>
 <tr>
